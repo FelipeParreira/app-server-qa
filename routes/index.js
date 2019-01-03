@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/testQA', (req, res) => {
+  res.send('Response from QA server!');
+});
+
 module.exports = router;
