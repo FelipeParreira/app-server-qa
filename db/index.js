@@ -1,11 +1,18 @@
 const Sequelize = require('sequelize');
 const { username, password } = require('./config.js');
 
-const db = new Sequelize('qa', username, password, {
+// {
+//   host     : ,
+//   user     : ,
+//   password : ,
+//   port     : process.env.RDS_PORT
+// }
+
+const db = new Sequelize('qa', process.env.RDS_USERNAME, process.env.RDS_PASSWORD, {
   dialect: 'mysql',
   operatorsAliases: false,
   logging: false,
-  host: 'traveltipsterqa.cnjuym9u33r0.us-west-1.rds.amazonaws.com',
+  host: process.env.RDS_HOSTNAME,
 });
 
 module.exports = db;
