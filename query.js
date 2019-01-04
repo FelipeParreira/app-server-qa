@@ -60,7 +60,7 @@ const getAllQuestions = (HotelID, res) => {
       for (let i = 0; i < answerGroups.length; i += 1) {
         questionData[i].Answers = answerGroups[i];
       }
-      const flatennedAnswers = Object.values(flatten(answerGroups));
+      const flatennedAnswers = Object.values(flatten(answerGroups), { maxDepth: 2 });
       res.send(answerGroups);
       const promisedUsers = [];
       for (let i = 0; i < flatennedAnswers.length; i += 1) {
