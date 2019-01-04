@@ -6,9 +6,12 @@ const {
 // import the db connection
 const db = require('./db/index');
 
+// import flatten module
+const flatten = require('flat');
+
 const getAllQuestions = (HotelID, res) => {
-  res.send([]);
-  return;
+  // res.send([]);
+  // return;
   let questionData;
   db.sync()
     .then(() => {
@@ -57,7 +60,7 @@ const getAllQuestions = (HotelID, res) => {
       for (let i = 0; i < answerGroups.length; i += 1) {
         questionData[i].Answers = answerGroups[i];
       }
-      const flatennedAnswers = answerGroups.flat();
+      const flatennedAnswers = flatten(answerGroups);
       const promisedUsers = [];
       for (let i = 0; i < flatennedAnswers.length; i += 1) {
         const promisedUser = Users.findOne({
