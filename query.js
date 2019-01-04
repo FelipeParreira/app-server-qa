@@ -61,7 +61,7 @@ const getAllQuestions = (HotelID, res) => {
         questionData[i].Answers = answerGroups[i];
       }
       const flatennedAnswers = Object.values(flatten(answerGroups), { maxDepth: 2 });
-      res.send(answerGroups);
+      // res.send(answerGroups);
       const promisedUsers = [];
       for (let i = 0; i < flatennedAnswers.length; i += 1) {
         const promisedUser = Users.findOne({
