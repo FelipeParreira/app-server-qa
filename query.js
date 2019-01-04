@@ -7,6 +7,8 @@ const {
 const db = require('./db/index');
 
 const getAllQuestions = (HotelID, res) => {
+  res.send([]);
+  return;
   let questionData;
   db.sync()
     .then(() => {
