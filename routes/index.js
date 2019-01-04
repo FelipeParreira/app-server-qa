@@ -4,10 +4,10 @@ var router = express.Router();
 // import the models
 const {
   Users, ReviewDistributions, Questions, Answers,
-} = require('../db/models');
+} = require('../db/models.js');
 
 // import the db connection
-const db = require('../db/index');
+const db = require('../db/index.js');
 
 // import helper query functions
 const {
@@ -20,7 +20,7 @@ const {
   postReportForQuestion,
   postReportForAnswer,
   postMessageToUser,
-} = require('../query');
+} = require('../query.js');
 
 
 router.use((req, res, next) => {
