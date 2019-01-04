@@ -26,6 +26,7 @@ const {
 router.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Methods', 'GET,POST');
   next();
 });
 
@@ -52,8 +53,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/hotels/:hotelId/questions', (req, res) => {
   const { hotelId } = req.params;
-  res.send([]);
-  // getAllQuestions(hotelId, res);
+  getAllQuestions(hotelId, res);
 });
 
 module.exports = router;
