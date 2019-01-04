@@ -27,8 +27,8 @@ app.use((req, res, next) => {
   next();
 });
 
-const port = process.env.PORT || 3004;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+// const port = process.env.PORT || 3004;
+// app.listen(port, () => console.log(`Listening on port ${port}...`));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
