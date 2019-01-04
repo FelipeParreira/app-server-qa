@@ -7,75 +7,76 @@ const {
 const db = require('./db/index');
 
 const getAllQuestions = (HotelID, res) => {
+  res.send(['aaa']);
   let questionData;
-  db.sync()
-    .then(() => {
-      const promisedQuestions = Questions.findAll({
-        raw: true,
-        attributes: [['ID', 'QuestionID'], 'Content', 'PostedDate', 'UserID'],
-        where: { HotelID },
-        order: [['ID', 'DESC']],
-      });
-      return promisedQuestions;
-    })
-    .then((questions) => {
-      questionData = questions;
-      const promisedUsers = [];
-      for (let i = 0; i < questions.length; i += 1) {
-        const promisedUser = Users.findOne({
-          raw: true,
-          where: { ID: questions[i].UserID },
-          attributes: ['Username', 'ProfileURL', 'ThumbnailURL', 'SignUpDate', 'CitiesVisited', 'HelpfulVotes', 'HomeCity', 'Category', 'Ranking', 'Photos', 'Contributions'],
-          include: { model: ReviewDistributions, attributes: ['Excellent', 'VeryGood', 'Average', 'Poor', 'Terrible'] },
-        });
+  // db.sync()
+  //   .then(() => {
+  //     const promisedQuestions = Questions.findAll({
+  //       raw: true,
+  //       attributes: [['ID', 'QuestionID'], 'Content', 'PostedDate', 'UserID'],
+  //       where: { HotelID },
+  //       order: [['ID', 'DESC']],
+  //     });
+  //     return promisedQuestions;
+  //   })
+  //   .then((questions) => {
+  //     questionData = questions;
+  //     const promisedUsers = [];
+  //     for (let i = 0; i < questions.length; i += 1) {
+  //       const promisedUser = Users.findOne({
+  //         raw: true,
+  //         where: { ID: questions[i].UserID },
+  //         attributes: ['Username', 'ProfileURL', 'ThumbnailURL', 'SignUpDate', 'CitiesVisited', 'HelpfulVotes', 'HomeCity', 'Category', 'Ranking', 'Photos', 'Contributions'],
+  //         include: { model: ReviewDistributions, attributes: ['Excellent', 'VeryGood', 'Average', 'Poor', 'Terrible'] },
+  //       });
 
-        promisedUsers.push(promisedUser);
-      }
+  //       promisedUsers.push(promisedUser);
+  //     }
 
-      return Promise.all(promisedUsers);
-    })
-    .then((users) => {
-      for (let i = 0; i < users.length; i += 1) {
-        questionData[i].User = users[i];
-      }
+  //     return Promise.all(promisedUsers);
+  //   })
+  //   .then((users) => {
+  //     for (let i = 0; i < users.length; i += 1) {
+  //       questionData[i].User = users[i];
+  //     }
 
-      const promisedAnswersGroups = [];
-      for (let i = 0; i < questionData.length; i += 1) {
-        const promisedAnswerGroup = Answers.findAll({
-          raw: true,
-          where: { QuestionID: questionData[i].QuestionID },
-          order: [['Votes', 'DESC']],
-        });
-        promisedAnswersGroups.push(promisedAnswerGroup);
-      }
+  //     const promisedAnswersGroups = [];
+  //     for (let i = 0; i < questionData.length; i += 1) {
+  //       const promisedAnswerGroup = Answers.findAll({
+  //         raw: true,
+  //         where: { QuestionID: questionData[i].QuestionID },
+  //         order: [['Votes', 'DESC']],
+  //       });
+  //       promisedAnswersGroups.push(promisedAnswerGroup);
+  //     }
 
-      return Promise.all(promisedAnswersGroups);
-    })
-    .then((answerGroups) => {
-      for (let i = 0; i < answerGroups.length; i += 1) {
-        questionData[i].Answers = answerGroups[i];
-      }
-      const flatennedAnswers = answerGroups.flat();
-      const promisedUsers = [];
-      for (let i = 0; i < flatennedAnswers.length; i += 1) {
-        const promisedUser = Users.findOne({
-          raw: true,
-          where: { ID: flatennedAnswers[i].UserID },
-          include: { model: ReviewDistributions, attributes: ['Excellent', 'VeryGood', 'Average', 'Poor', 'Terrible'] },
-        });
-        promisedUsers.push(promisedUser);
-      }
+  //     return Promise.all(promisedAnswersGroups);
+  //   })
+  //   .then((answerGroups) => {
+  //     for (let i = 0; i < answerGroups.length; i += 1) {
+  //       questionData[i].Answers = answerGroups[i];
+  //     }
+  //     const flatennedAnswers = answerGroups.flat();
+  //     const promisedUsers = [];
+  //     for (let i = 0; i < flatennedAnswers.length; i += 1) {
+  //       const promisedUser = Users.findOne({
+  //         raw: true,
+  //         where: { ID: flatennedAnswers[i].UserID },
+  //         include: { model: ReviewDistributions, attributes: ['Excellent', 'VeryGood', 'Average', 'Poor', 'Terrible'] },
+  //       });
+  //       promisedUsers.push(promisedUser);
+  //     }
 
-      return Promise.all(promisedUsers);
-    })
-    .then((users) => {
-      for (let i = 0; i < questionData.length; i += 1) {
-        questionData[i].AnswersUsers = users.splice(0, questionData[i].Answers.length);
-      }
+  //     return Promise.all(promisedUsers);
+  //   })
+  //   .then((users) => {
+  //     for (let i = 0; i < questionData.length; i += 1) {
+  //       questionData[i].AnswersUsers = users.splice(0, questionData[i].Answers.length);
+  //     }
 
-      res.send(questionData);
-      res.end();
-    });
+  //     res.send(questionData);
+  //     res.end();
+  //   });
 };
 
 const postQuestion = (HotelID, UserID, PostedDate, Content, res) => {

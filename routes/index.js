@@ -52,9 +52,8 @@ router.get('/', function(req, res, next) {
 // });
 
 router.get('/hotels/:hotelId/questions', (req, res) => {
-  res.send([]);
-  // const { hotelId } = req.params;
-  // getAllQuestions(hotelId, res);
+  const { hotelId } = req.params;
+  getAllQuestions(hotelId, res);
 });
 
 module.exports = router;
