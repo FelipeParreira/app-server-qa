@@ -98,7 +98,7 @@ const postQuestion = (HotelID, UserID, PostedDate, Content, res) => {
 const deleteQuestion = (QuestionID, UserID, res) => {
   db.sync()
     .then(() => {
-      res.send(['inside then after db sync']);
+      // res.send(['inside then after db sync']);
       const foundQuestion = Questions.findOne({
         where: {
           ID: QuestionID,
