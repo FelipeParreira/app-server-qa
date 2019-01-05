@@ -50,9 +50,9 @@ router.post('/hotels/:hotelId/questions', (req, res) => {
 });
 
 // DELETE a question for a hotel
-router.delete('/hotels/:hotelId/questions/:questionId', (req, res) => {
-  const { questionId } = req.params;
-  const { userId } = req.body;
+router.delete('/hotels/:hotelId/questions/:questionId/:userId', (req, res) => {
+  const { questionId, userId } = req.params;
+  // const { userId } = req.body;
   res.send([questionId, userId]);
   // res.send(['qwerty']);
   deleteQuestion(questionId, userId, res);
