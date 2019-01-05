@@ -74,7 +74,7 @@ router.post('/hotels/:hotelId/questions/:questionId/answers', (req, res) => {
 });
 
 // DELETE an answer for a certain question
-router.delete('/hotels/:hotelId/questions/:questionId/answers/:answerId', (req, res) => {
+router.delete('/hotels/:hotelId/questions/:questionId/answers/:answerId/:userId', (req, res) => {
   const { answerId, userId } = req.params;
   // const { userId } = req.body;
   deleteAnswer(Number(answerId), Number(userId), res);
