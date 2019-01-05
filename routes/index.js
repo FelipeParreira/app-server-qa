@@ -80,13 +80,13 @@ router.delete('/hotels/:hotelId/questions/:questionId/answers/:answerId/:userId'
   deleteAnswer(Number(answerId), Number(userId), res);
 });
 
-// // Upvote or downvote a certain answer to a particular question
-// router.patch('/hotels/:hotelId/questions/:questionId/answers/:answerId/votes', (req, res) => {
-//   // vote should be 1 or -1
-//   const { vote } = req.body;
-//   const { answerId } = req.params;
-//   voteAnswer(answerId, Number(vote), res);
-// });
+// Upvote or downvote a certain answer to a particular question
+router.patch('/hotels/:hotelId/questions/:questionId/answers/:answerId/votes', (req, res) => {
+  // vote should be 1 or -1
+  const { vote } = req.body;
+  const { answerId } = req.params;
+  voteAnswer(Number(answerId), Number(vote), res);
+});
 
 // // POST a report for a certain answer
 // router.post('/hotels/:hotelId/questions/:questionId/answers/:answerId/reports', (req, res) => {
