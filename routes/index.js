@@ -35,25 +35,72 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-// router.get('/testQA', (req, res) => {
-  // db.sync()
-  //   .then(() => {
-  //     const promisedQuestions = Questions.findOne({
-  //       raw: true,
-  //       attributes: [['ID', 'QuestionID'], 'Content', 'PostedDate', 'UserID'],
-  //     });
-  //     return promisedQuestions;
-  //   })
-  //   .then(data => {
-  //     console.log('data', data);
-  //     res.send(data);
-  //   })
-  // res.send('Response from QA server!');
-// });
-
+// GET questions for a certain hotel
 router.get('/hotels/:hotelId/questions', (req, res) => {
   const { hotelId } = req.params;
   getAllQuestions(hotelId, res);
 });
+
+// POST a question to a hotel
+router.post('/hotels/:hotelId/questions', (req, res) => {
+  const { hotelId } = req.params;
+  const { postedDate, content, userId } = req.body;
+  // postedDate should be in the format: yyyy/mm/dd (as a string)
+  postQuestion(hotelId, Number(userId), postedDate, content, res);
+});
+
+// DELETE a question for a hotel
+// router.delete('/hotels/:hotelId/questions/:questionId', (req, res) => {
+//   const { questionId } = req.params;
+//   const { userId } = req.body;
+//   deleteQuestion(questionId, userId, res);
+// });
+
+// // POST a report for a certain question
+// router.post('/hotels/:hotelId/questions/:questionId/reports', (req, res) => {
+//   // the following function is just a stub
+//   // since our Q&A module is not able to retrieve reports,
+//   // we are not saving anything; you can implement this in the future if you want.
+//   postReportForQuestion(res);
+// });
+
+// // POST an answer for a certain question
+// router.post('/hotels/:hotelId/questions/:questionId/answers', (req, res) => {
+//   const { questionId } = req.params;
+//   const { content, userId } = req.body;
+//   postAnswer(questionId, userId, content, res);
+// });
+
+// // DELETE an answer for a certain question
+// router.delete('/hotels/:hotelId/questions/:questionId/answers/:answerId', (req, res) => {
+//   const { answerId } = req.params;
+//   const { userId } = req.body;
+//   deleteAnswer(answerId, userId, res);
+// });
+
+// // Upvote or downvote a certain answer to a particular question
+// router.patch('/hotels/:hotelId/questions/:questionId/answers/:answerId/votes', (req, res) => {
+//   // vote should be 1 or -1
+//   const { vote } = req.body;
+//   const { answerId } = req.params;
+//   voteAnswer(answerId, Number(vote), res);
+// });
+
+// // POST a report for a certain answer
+// router.post('/hotels/:hotelId/questions/:questionId/answers/:answerId/reports', (req, res) => {
+//   // the following function is just a stub
+//   // since our Q&A module is not able to retrieve reports,
+//   // we are not saving anything; you can implement this in the future if you want.
+//   postReportForAnswer(res);
+// });
+
+// // POST a message for a certain user
+// router.post('/users/:userId/messages', (req, res) => {
+//   // the following function is just a stub
+//   // since our Q&A module is not able to retrieve messages,
+//   // we are not saving anything; you can implement this in the future if you want.
+//   postMessageToUser(res);
+// });
+
 
 module.exports = router;
