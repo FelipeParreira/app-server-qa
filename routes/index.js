@@ -88,13 +88,13 @@ router.patch('/hotels/:hotelId/questions/:questionId/answers/:answerId/votes', (
   voteAnswer(Number(answerId), Number(vote), res);
 });
 
-// // POST a report for a certain answer
-// router.post('/hotels/:hotelId/questions/:questionId/answers/:answerId/reports', (req, res) => {
-//   // the following function is just a stub
-//   // since our Q&A module is not able to retrieve reports,
-//   // we are not saving anything; you can implement this in the future if you want.
-//   postReportForAnswer(res);
-// });
+// POST a report for a certain answer
+router.post('/hotels/:hotelId/questions/:questionId/answers/:answerId/reports', (req, res) => {
+  // the following function is just a stub
+  // since our Q&A module is not able to retrieve reports,
+  // we are not saving anything; you can implement this in the future if you want.
+  postReportForAnswer(res);
+});
 
 // // POST a message for a certain user
 // router.post('/users/:userId/messages', (req, res) => {
