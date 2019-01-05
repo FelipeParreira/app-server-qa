@@ -96,13 +96,13 @@ router.post('/hotels/:hotelId/questions/:questionId/answers/:answerId/reports', 
   postReportForAnswer(res);
 });
 
-// // POST a message for a certain user
-// router.post('/users/:userId/messages', (req, res) => {
-//   // the following function is just a stub
-//   // since our Q&A module is not able to retrieve messages,
-//   // we are not saving anything; you can implement this in the future if you want.
-//   postMessageToUser(res);
-// });
+// POST a message for a certain user
+router.post('/users/:userId/messages', (req, res) => {
+  // the following function is just a stub
+  // since our Q&A module is not able to retrieve messages,
+  // we are not saving anything; you can implement this in the future if you want.
+  postMessageToUser(res);
+});
 
 
 module.exports = router;
