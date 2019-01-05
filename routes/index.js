@@ -73,12 +73,12 @@ router.post('/hotels/:hotelId/questions/:questionId/answers', (req, res) => {
   postAnswer(questionId, userId, content, res);
 });
 
-// // DELETE an answer for a certain question
-// router.delete('/hotels/:hotelId/questions/:questionId/answers/:answerId', (req, res) => {
-//   const { answerId } = req.params;
-//   const { userId } = req.body;
-//   deleteAnswer(answerId, userId, res);
-// });
+// DELETE an answer for a certain question
+router.delete('/hotels/:hotelId/questions/:questionId/answers/:answerId', (req, res) => {
+  const { answerId, userId } = req.params;
+  // const { userId } = req.body;
+  deleteAnswer(Number(answerId), Number(userId), res);
+});
 
 // // Upvote or downvote a certain answer to a particular question
 // router.patch('/hotels/:hotelId/questions/:questionId/answers/:answerId/votes', (req, res) => {
