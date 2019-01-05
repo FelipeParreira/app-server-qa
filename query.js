@@ -96,7 +96,6 @@ const postQuestion = (HotelID, UserID, PostedDate, Content, res) => {
 };
 
 const deleteQuestion = (QuestionID, UserID, res) => {
-  res.send(['opo']);
   db.sync()
     .then(() => {
       const foundQuestion = Questions.findOne({
@@ -109,6 +108,7 @@ const deleteQuestion = (QuestionID, UserID, res) => {
       return Promise.resolve(foundQuestion);
     })
     .then((question) => {
+      res.send(question);
       if (!question) {
         throw question;
       }
