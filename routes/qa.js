@@ -18,5 +18,11 @@ router.get('/hotels/:hotelId/questions', (req, res, next) => {
   });
 });
 
+router.delete('/hotels/:hotelId/questions/:questionId', (req, res) => {
+  const { questionId } = req.params;
+  const { userId } = req.body;
+  deleteQuestion(questionId, userId, res);
+});
+
 
 module.exports = router;
