@@ -101,8 +101,8 @@ const deleteQuestion = (QuestionID, UserID, res) => {
       // res.send(['inside then after db sync']);
       const foundQuestion = Questions.findOne({
         where: {
-          ID: Number(QuestionID),
-          UserID: Number(UserID),
+          ID: QuestionID,
+          UserID,
         },
       });
 
