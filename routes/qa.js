@@ -17,3 +17,6 @@ router.get('/hotels/:hotelId/questions', (req, res, next) => {
     res.send(response.data);
   });
 });
+
+
+module.exports = router;
