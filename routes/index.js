@@ -66,11 +66,11 @@ router.post('/hotels/:hotelId/questions/:questionId/reports', (req, res) => {
 });
 
 // // POST an answer for a certain question
-// router.post('/hotels/:hotelId/questions/:questionId/answers', (req, res) => {
-//   const { questionId } = req.params;
-//   const { content, userId } = req.body;
-//   postAnswer(questionId, userId, content, res);
-// });
+router.post('/hotels/:hotelId/questions/:questionId/answers', (req, res) => {
+  const { questionId } = req.params;
+  const { content, userId } = req.body;
+  postAnswer(questionId, userId, content, res);
+});
 
 // // DELETE an answer for a certain question
 // router.delete('/hotels/:hotelId/questions/:questionId/answers/:answerId', (req, res) => {
