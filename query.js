@@ -10,6 +10,7 @@ const db = require('./db/index');
 const flatten = require('flat');
 
 const getAllQuestions = (HotelID, res) => {
+  res.send(['inside get all questions']);
   let questionData;
   db.sync()
     .then(() => {
