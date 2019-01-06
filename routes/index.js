@@ -37,8 +37,8 @@ router.get('/', function(req, res, next) {
 
 // GET questions for a certain hotel
 router.get('/hotels/:hotelId/questions', (req, res) => {
-  res.send([hotelId]);
   const { hotelId } = req.params;
+  res.send([hotelId]);
   getAllQuestions(hotelId, res);
 });
 
