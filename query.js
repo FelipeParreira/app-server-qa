@@ -11,9 +11,11 @@ const flatten = require('flat');
 
 const getAllQuestions = (HotelID, res) => {
   let questionData;
+  // res.send();
   db.sync()
   .then(() => {
-      res.send(['after db sync']);
+    // this response is never sent back
+      // res.send(['after db sync']);
       const promisedQuestions = Questions.findAll({
         raw: true,
         attributes: [['ID', 'QuestionID'], 'Content', 'PostedDate', 'UserID'],
