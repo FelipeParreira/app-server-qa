@@ -10,10 +10,10 @@ const db = require('./db/index');
 const flatten = require('flat');
 
 const getAllQuestions = (HotelID, res) => {
-  res.send(['inside get all questions']);
   let questionData;
   db.sync()
-    .then(() => {
+  .then(() => {
+      res.send(['after db sync']);
       const promisedQuestions = Questions.findAll({
         raw: true,
         attributes: [['ID', 'QuestionID'], 'Content', 'PostedDate', 'UserID'],
