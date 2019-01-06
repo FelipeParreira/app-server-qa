@@ -39,7 +39,7 @@ router.get('/', function(req, res, next) {
 router.get('/hotels/:hotelId/questions', (req, res) => {
   const { hotelId } = req.params;
   // res.send([hotelId]);
-  getAllQuestions(hotelId, res);
+  getAllQuestions(Number(hotelId), res);
 });
 
 // POST a question to a hotel
